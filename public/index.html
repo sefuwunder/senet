@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Senet — a cozy game of the pharaohs</title>
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<canvas id="scene"></canvas>
+
+<header class="hud-top">
+  <div class="brand">
+    <h1>Senet</h1>
+    <p>a cozy game of the pharaohs</p>
+  </div>
+  <div class="top-btns">
+    <button id="btn-rules" class="pill-btn" aria-label="How to play">?</button>
+    <button id="btn-sound" class="pill-btn" aria-label="Toggle sound">🔊</button>
+    <button id="btn-new" class="pill-btn" aria-label="New game">↻</button>
+  </div>
+</header>
+
+<div class="scorebar">
+  <div class="score gold"><span class="dot"></span><span id="score-gold">You · 0 off</span></div>
+  <div id="turn-banner" class="turn-banner">Cast the sticks to begin</div>
+  <div class="score coral"><span id="score-coral">Rival · 0 off</span><span class="dot"></span></div>
+</div>
+
+<div class="dock">
+  <div id="sticks-tray" class="sticks-tray" aria-live="polite"></div>
+  <button id="btn-cast" class="cast-btn">🎲 Cast the sticks</button>
+  <p id="hint" class="hint">Drag to orbit · scroll to zoom</p>
+</div>
+
+<div id="rules-modal" class="modal" hidden>
+  <div class="modal-card">
+    <h2>How to play Senet</h2>
+    <p class="lede">The 5,000-year-old Egyptian race game. Get all five of your golden pawns off the board first.</p>
+    <ol>
+      <li><b>Cast the sticks</b> — four lots tumble; the light faces count 1–4, all dark counts <b>5</b>.</li>
+      <li><b>Another turn</b> on a throw of 1, 4 or 5.</li>
+      <li><b>Move one pawn</b> forward along the winding track. Click a glowing pawn to move it.</li>
+      <li><b>Swap!</b> Landing on a rival pawn trades places. Your own pawns block the way.</li>
+      <li><b>House of Beauty (26)</b> — every pawn must stop here; it can't be jumped over.</li>
+      <li><b>House of Water (27)</b> — splash! Back to the House of Rebirth (15).</li>
+      <li><b>Houses 28–30 are sacred</b> — rivals can't bump you there.</li>
+      <li><b>Land exactly on 30</b> to bear a pawn off. No overshooting, ever.</li>
+    </ol>
+    <button id="btn-close-rules" class="cast-btn small">Let's play</button>
+  </div>
+</div>
+
+<div id="win-modal" class="modal" hidden>
+  <div class="modal-card win">
+    <h2 id="win-title">You win! 🎉</h2>
+    <p id="win-sub">The gods smile on your journey through the Duat.</p>
+    <button id="btn-again" class="cast-btn">Play again</button>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script type="module" src="/game.js"></script>
+</body>
+</html>
